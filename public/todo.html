@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .qbox{
+    background: #ffff;
+    height: 40vh;
+  }
+  .mama{
+    height: 25vh;
+    overflow-y: scroll;
+    overflow-wrap: break-word; ;
+  }
+  .qbox input{
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+  } 
+  .qbox input::placeholder{
+    font-size: 1.2rem;
+  }
+  .first{
+    border: 1px solid #98CD60;
+    border-left:10px solid #98CD60;
+  }
+  .second{
+    border: 1px solid #23CBFF;
+    border-left:10px solid #23CBFF;
+  }
+  .third{
+    border: 1px solid #FF9A1E;
+    border-left:10px solid #FF9A1E;
+  }
+  .forth{
+    border: 1px solid #FF6525;
+    border-left:10px solid #FF6525;
+  }
+  .qbox h6{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: -4px;
+    margin-left: 8px;
+  }
+  .qbox p{
+    font-size: 1rem;
+    color: #B89F9F;
+    margin-left: 8px;
+  }
+  .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 26px;
+  border: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10rem;
+  transition: all 0.02s;
+  font-weight: bold;
+  cursor: pointer;
+  color: rgb(37, 37, 37);
+  z-index: 0;
+  box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+}
+
+.button:hover {
+  background: rgb(193, 228, 248);
+  color: rgb(33, 0, 85);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.hoverEffect {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hoverEffect div {
+  background: rgb(222, 0, 75);
+  background: linear-gradient(
+    90deg,
+    rgb(143, 89, 107) 0%,
+    rgb(17, 17, 17) 49%,
+    rgb(251, 252, 252) 100%
+  );
+  border-radius: 40rem;
+  width: 10rem;
+  height: 10rem;
+  transition: 0.4s;
+  filter: blur(20px);
+  animation: effect infinite 3s linear;
+  opacity: 0.5;
+}
+
+.button:hover .hoverEffect div {
+  width: 8rem;
+  height: 8rem;
+}
+
+@keyframes effect {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.menu-container {
+            position: relative;
+            display: inline-block;
+        }
+        .menu-icon {
+            width: 40px;
+            cursor: pointer;
+        }
+        .menu-options {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 50px; /* Position below the image */
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            min-width: 120px;
+        }
+        .menu-options button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            text-align: left;
+        }
+        .menu-options button:hover {
+            background-color: #f0f0f0;
+        }
+
+  
+  
+</style>
+<body class="bg-light">
+  <nav class="navbar nav container-fluid navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+      <a class="navbar-brand fs-3 fw-bold" href="#">Mindtalk</a>
+    </div>
+  </nav>
+  <section class=" container-fluid mt-3 ">
+    <div class="row d-flex gap-3">
+      <div class=" col-md-5 mb-4 ">
+        <div class="qbox first ">
+          <h6>Do first</h6>
+          <p>urgent & important</p>
+          <input id="items" type="text" class="w-75 p-1" placeholder="Add Task">
+          <button onclick="listing()" class="button">Add to list
+            <div class="hoverEffect">
+              <div></div>
+            </div>
+          </button>
+          <div class="mama ">
+            <p id="showitems"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 mb-4">
+        <div class="qbox second ">
+          <h6>Schedule</h6>
+          <p>less urgent, but important</p>
+          <input type="text" class="w-75 p-1" placeholder="Add Task" id="item">
+          <button onclick="listner()" class="button ">Add to list
+            <div class="hoverEffect">
+              <div></div>
+            </div>
+          </button>
+          <div class="mama text-dark">
+            <p id="showitem"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex gap-3">
+      <div class="col-md-5 mb-4">
+        <div class="qbox third ">
+          <h6>Delegate</h6>
+          <p>urgent,but less important</p>
+          <input type="text" class="w-75 p-1" placeholder="Add Task" id="ite">
+          <button onclick="listor()" class="button">Add to list
+            <div class="hoverEffect">
+              <div></div>
+            </div>
+          </button>
+          <div class="mama">
+            <p id="showite"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 mb-4">
+        <div class="qbox forth ">
+          <h6>Don't do</h6>
+          <p>Neither urgent nor important</p>
+          <input type="text" class="w-75 p-1" placeholder="Add Task" id="it">
+          <button onclick="lister()" class="button">Add to list
+            <div class="hoverEffect">
+              <div></div>
+            </div>
+          </button>
+          <div class="mama">
+            <p id="showit" ></p>
+          </div>
+        </div>
+      </div>
+    </div>
+          
+
+  </section>
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
