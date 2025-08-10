@@ -16,11 +16,14 @@
   .qbox{
     background: #ffff;
     height: 40vh;
+    word-break: break-word;
+    padding: 1rem;
   }
   .mama{
     height: 25vh;
-    overflow-y: scroll;
-    overflow-wrap: break-word; ;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+    padding-right: 8px;
   }
   .qbox input{
     border: none;
@@ -160,6 +163,21 @@
             background-color: #f0f0f0;
         }
 
+        @media (max-width: 768px) {
+  .Allbox.row {
+    flex-direction: column !important;
+    gap: 0.5rem;
+  }
+  .col-md-5 {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+  .qbox {
+    min-height: unset;
+    height: auto;
+  }
+}
+
   
   
 </style>
@@ -175,7 +193,9 @@
     </div>
   </nav>
   <section class=" container-fluid mt-3 ">
-    <div class="row d-flex gap-3">
+
+
+    <div class="Allbox row d-flex gap-3">
       <div class=" col-md-5 mb-4 ">
         <div class="qbox first ">
           <h6>Do first</h6>
@@ -191,7 +211,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5 mb-4">
+
+
+
+      <div class=" Allbox col-md-5 mb-4">
         <div class="qbox second ">
           <h6>Schedule</h6>
           <p>less urgent, but important</p>
@@ -207,7 +230,10 @@
         </div>
       </div>
     </div>
-    <div class="row d-flex gap-3">
+
+
+
+    <div class="Allbox row d-flex gap-3">
       <div class="col-md-5 mb-4">
         <div class="qbox third ">
           <h6>Delegate</h6>
@@ -223,7 +249,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5 mb-4">
+
+
+
+
+      <div class="Allbox col-md-5 mb-4">
         <div class="qbox forth ">
           <h6>Don't do</h6>
           <p>Neither urgent nor important</p>
@@ -239,6 +269,10 @@
         </div>
       </div>
     </div>
+
+
+
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -256,6 +290,10 @@
       </div>
     </div>
   </div>
+
+
+
+
   <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -273,6 +311,12 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
   <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -290,6 +334,8 @@
       </div>
     </div>
   </div>
+   
+
   <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
