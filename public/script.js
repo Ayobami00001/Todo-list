@@ -1,3 +1,5 @@
+
+
 function showToast(txt,grav, posi,bgcolo,colo) {
     Toastify({
         text: txt,
@@ -14,10 +16,53 @@ function showToast(txt,grav, posi,bgcolo,colo) {
         onClick: function(){} // Callback after click
       }).showToast();
     }
+
+const items = document.getElementById('items');
+const item = document.getElementById('item');
+const ite = document.getElementById('ite');
+const it = document.getElementById('it');
+const showitems = document.getElementById('showitems');
+const showitem = document.getElementById('showitem');
+const showite = document.getElementById('showite');
+const showit = document.getElementById('showit');
+    
     var allitems = []
     var allitem = []
     var allite = []
     var allit = []
+    
+    function loadAllTasksFromFirestore() {
+    const user = firebase.auth().currentUser;
+
+    if (!user) return;
+    db.collection("users").doc(user.uid).get().then(doc => {
+        if (doc.exists) {
+            const data = doc.data();
+            allitems = data.allitems || [];
+            allitem = data.allitem || [];
+            allite = data.allite || [];
+            allit = data.allit || [];
+            displayItems();
+            displayItem();
+            displayIte();
+            displayIt();
+        }
+    });
+}
+
+
+
+    function saveAllTasksToFirestore() {
+    const user = firebase.auth().currentUser;
+    if (!user) return;
+    db.collection("users").doc(user.uid).set({
+        allitems,
+        allitem,
+        allite,
+        allit
+    });
+}
+
 var editindex;
 
     function listing() {
@@ -28,6 +73,7 @@ var editindex;
             document.getElementById('items').value =''
             console.log(allitems);
             displayItems()
+            saveAllTasksToFirestore();
         }else{
             showToast('input cannot be empty','top','center','red','black')
             
@@ -41,6 +87,7 @@ var editindex;
             document.getElementById('item').value =''
             console.log(allitem);
             displayItem()
+            saveAllTasksToFirestore();
         }else{
             showToast('input cannot be empty','top','center','red','black')
             
@@ -53,6 +100,7 @@ var editindex;
             document.getElementById('ite').value =''
             console.log(allite);
             displayIte()
+            saveAllTasksToFirestore();
         }else{
             showToast('input cannot be empty','top','center','red','black')
             
@@ -65,6 +113,7 @@ var editindex;
             document.getElementById('it').value =''
             console.log(allit);
             displayIt()
+            saveAllTasksToFirestore();
         }else{
             showToast('input cannot be empty','top','center','red','black')
             
@@ -86,21 +135,25 @@ function editgangan() {
     allitems.splice(editindex,1,newItems.value)
     displayItems()
     showToast('Item edited successfully','top','center','green','black')
+    saveAllTasksToFirestore();
 }
 function editganga() {
    allitem.splice(editindex,1,newItem.value)
     displayItem()
     showToast('Item edited successfully','top','center','green','black')
+    saveAllTasksToFirestore();
 }
 function editgang() {
     allite.splice(editindex,1,newIte.value)
     displayIte()
     showToast('Item edited successfully','top','center','green','black')
+    saveAllTasksToFirestore();
 }
 function editgan() {
     allit.splice(editindex,1,newIt.value)
     displayIt()
     showToast('Item edited successfully','top','center','green','black')
+    saveAllTasksToFirestore();
 }
  
 
@@ -152,6 +205,7 @@ function editgan() {
         allitems.splice(index, 1);
         showToast('Item deleted successfully', 'top', 'center', 'red', 'black');
         displayItems();
+        saveAllTasksToFirestore();
     }
     else {
         showToast('Deletion cancelled', 'top', 'center', 'blue', 'black');
@@ -163,6 +217,7 @@ function editgan() {
         allitem.splice(index,1);
         showToast('Item deleted successfully','top','center','red','black');
         displayItem();
+        saveAllTasksToFirestore();
         }else {
             showToast('Deletion cancelled','top','center','blue','black');
         }
@@ -174,6 +229,7 @@ function editgan() {
         allite.splice(index,1)
         showToast('Item deleted successfully','top','center','red','black');
         displayIte();
+        saveAllTasksToFirestore();
         }else {
             showToast('Deletion cancelled','top','center','blue','black');
         }
@@ -185,6 +241,7 @@ function editgan() {
         allit.splice(index,1)
         showToast('Item deleted successfully','top','center','red','black');
         displayIt();
+        saveAllTasksToFirestore();
         }else {
             showToast('Deletion cancelled','top','center','blue','black');
         }
